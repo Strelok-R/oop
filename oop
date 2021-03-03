@@ -1,0 +1,144 @@
+#include <iostream>
+#include <string>
+
+
+// Задание: Работник предприятия.
+//Поля данных: фамилия, размер зарплаты, стаж работы. Вывести
+//данные о рабочем с наибольшей зарплатой и наименьшим
+//стажем 
+using namespace std;
+
+class sp // тут надо было типо создать абстрактный класс, ну я тип и сделал, хотя зачем я хз :D
+{
+public:
+	virtual void spisok() = 0;
+
+};
+
+class family : sp
+{
+
+public:
+	void spisok() override
+	{
+		cout << fio1 << endl;
+		cout << fio2 << endl;
+		cout << fio3 << endl;
+		cout << fio4 << endl;
+		cout << fio5 << endl;
+	}
+
+
+
+private: // данные по фамилии
+	friend class  zadanie;
+	string fio1 = "korotkov";
+	string fio2 = "petrov";
+	string fio3 = "leonov";
+	string fio4 = "fonfarov";
+	string fio5 = "chernov";
+
+};
+
+class money  //наследования класса зарплаты по фамилии
+{
+public: // реализация зп
+
+	void zarp() // вывод зарплаты на экран
+	{
+  
+		cout << "\nzp_sot v mounth" << endl << zp_sot1 << endl << zp_sot2 << endl << zp_sot3 << endl << zp_sot4 << endl << zp_sot5 << endl;
+
+	}
+private: // данные зп (деньги)
+	friend class  zadanie;
+	int zp_sot1 = 100;
+	int zp_sot2 = 3000;
+	int zp_sot3 = 35500;
+	int zp_sot4 = 5000;
+	int zp_sot5 = 700;
+
+
+};
+
+class st : public money //стаж работы по фамилии
+{
+public: // реализация стажа 
+
+	void stz() // стаж сотрудников вывод на экран
+	{
+		cout << "\nstazh" << endl << st_sot1 << endl << st_sot2 << endl << st_sot3 << endl << st_sot4 << endl << st_sot5 << endl;
+	}
+
+
+private: // данные по стажу(месяцы) st_sot - сотрудники.
+	friend class  zadanie;
+	int st_sot1 = 2;
+	int st_sot2 = 2;
+	int st_sot3 = 2;
+	int st_sot4 = 2;
+	int st_sot5 = 2;
+
+
+};
+
+class zadanie : public st
+{
+private:
+	int x, c, max;
+	int zp_max1, zp_max2, zp_max3, zp_max4, zp_max5;
+
+
+public:
+
+
+
+	zadanie() // тут тип выводится максимальная зарплата для каждого сотрудника
+	{
+		string fio1 = "korotkov";
+		zp_max1 = st_sot1 * zp_sot1;
+		cout << fio1 << "\tsot1 zp = " << zp_max1 << endl;
+		
+    string fio2 = "petrov";
+		zp_max2 = st_sot2 * zp_sot2;
+		cout << fio2 << "\t\tsot2 zp = " << zp_max2 << endl;
+
+		string fio3 = "leonov";
+		zp_max3 = st_sot3 * zp_sot3;
+		cout << fio3 << "\t\tsot3 zp = " << zp_max3 << endl;
+
+		string fio4 = "fonfarov";
+		zp_max4 = st_sot4 * zp_sot4;
+		cout << fio4 << "\tsot4 zp = " << zp_max4 << endl;
+
+		string fio5 = "chernov";
+		zp_max5 = st_sot5 * zp_sot5;
+		cout << fio5 << "\t\tsot5 zp = " << zp_max5 << endl;
+	}
+
+
+
+
+	void print() // тут выводится сравнение зарплат и тип максимальное число выводит максимальное зп.
+	{
+		if (zp_max1 > zp_max2) max = zp_max1;
+		else max = zp_max2;
+		if (max < zp_max3) max = zp_max3;
+		else max = max;
+		if (max < zp_max4) max = zp_max4;
+		else max = max;
+		if (max < zp_max5) max = zp_max5;
+		else max = max;
+		cout << "max zp = " << max;
+
+	}
+};
+
+
+int main()
+{
+	zadanie a;
+	a.print();
+
+}
+
